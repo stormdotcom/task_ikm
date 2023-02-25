@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import Badge from '@mui/material/Badge';
-import { Chip } from '@mui/material';
+import { Chip, Grid, Typography } from '@mui/material';
+import SearchBar from './SearchBar';
 
 
 const data = [
@@ -72,26 +73,36 @@ const Example = () => {
         [],
     );
 
-    return <MaterialReactTable
-        toggleFullScreen={false}
-        toggleSelectAll={false}
-        toggleVisibility={false}
-        enableColumnActions={false}
-        enableRowSelection={true}
-        getCanMultiSelect={true}
-        enableSelectAll={true}
-        enablePagination={false}
-        enableGlobalFilter={false}
-        enableDensityToggle={false}
-        enableHiding={false}
-        enableColumnFilterModes={false}
-        enableStickyHeader={true}
-        positionToolbarAlertBanner="top"
-        enableTopToolbar={false}
-        initialState={{ showColumnFilters: false }}
-        columns={columns}
-        data={data}
-    />;
+    return <Grid sx={{ display: "flex", flexDirection: 'column', margin: 2 }}>
+        <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography sx={{ fontWeight: 800, fontSize: 18, float: "center" }}> Burial Type </Typography>
+            <Grid >
+                <SearchBar />
+            </Grid>
+        </Grid>
+
+        <MaterialReactTable
+            toggleFullScreen={false}
+            toggleSelectAll={false}
+            toggleVisibility={false}
+            enableColumnActions={false}
+            enableRowSelection={true}
+            getCanMultiSelect={true}
+            enableSelectAll={true}
+            enablePagination={false}
+            enableGlobalFilter={false}
+            enableDensityToggle={false}
+            enableHiding={false}
+            enableColumnFilterModes={false}
+            enableStickyHeader={true}
+            positionToolbarAlertBanner="top"
+            enableTopToolbar={false}
+            initialState={{ showColumnFilters: false }}
+            columns={columns}
+            data={data}
+        />
+    </Grid >
+
 };
 
 export default Example;
