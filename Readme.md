@@ -4,7 +4,6 @@
 - Table
 - NavBar
 - Footer
--
 ## Libraries used
 -  "@material-ui/core": "^4.12.4",
 -  "@mui/icons-material": "^5.11.9",
