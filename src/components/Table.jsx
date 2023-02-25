@@ -1,39 +1,97 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import React, { useMemo } from 'react';
+import MaterialReactTable from 'material-react-table';
+import Badge from '@mui/material/Badge';
+import { Chip } from '@mui/material';
 
-const columns = [
-    {},
-    { field: 'firstName', headerName: 'Name', width: 200 },
+
+const data = [
     {
-        field: 'status', headerName: 'Status', width: 200,
-        valueGetter: (params) => {
-            if (params.row.status) {
-                return <Button color="success">Active</Button>
-            }
-            if (!params.row.status) {
-                return <Button color="primary">Inactive</Button>
-            }
-        }
+        name: {
+            firstName: 'John',
+            lastName: 'Doe',
+        },
+        status: true,
+        city: 'East Daphne',
+        state: 'Kentucky',
+    },
+    {
+        name: {
+            firstName: 'Jane',
+            lastName: 'Doe',
+        },
+        status: false,
+        city: 'Columbus',
+        state: 'Ohio',
+    },
+    {
+        name: {
+            firstName: 'Joe',
+            lastName: 'Doe',
+        },
+        status: false,
+        city: 'South Linda',
+        state: 'West Virginia',
+    },
+    {
+        name: {
+            firstName: 'Kevin',
+            lastName: 'Vandy',
+        },
+        status: true,
+        city: 'Lincoln',
+        state: 'Nebraska',
+    },
+    {
+        name: {
+            firstName: 'Joshua',
+            lastName: 'Rolluffs',
+        },
+        status: true,
+        city: 'Charleston',
+        state: 'South Carolina',
     },
 ];
 
-const rows = [
-    { id: 1, status: true, firstName: 'Jon', age: 35 },
-    { id: 2, status: false, firstName: 'Jessica', age: 42 }
-];
-
-
-export default function DataTable() {
-    return (
-        <div style={{ height: 400, width: '100%' }}>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
-                checkboxSelection
-            />
-        </div>
+const Example = () => {
+    const columns = useMemo(
+        () => [
+            {
+                accessorKey: 'name.firstName',
+                header: 'Name',
+            },
+            {
+                header: 'Status',
+                accessorFn: (row) => {
+                    if (row.status) {
+                        return <Chip label="Active" color="success" />
+                    }
+                    return <Chip label="InActive" color="error" />
+                }
+            }
+        ],
+        [],
     );
-}
+
+    return <MaterialReactTable
+        toggleFullScreen={false}
+        toggleSelectAll={false}
+        toggleVisibility={false}
+        enableColumnActions={false}
+        enableRowSelection={true}
+        getCanMultiSelect={true}
+        enableSelectAll={true}
+        enablePagination={false}
+        enableGlobalFilter={false}
+        enableDensityToggle={false}
+        enableHiding={false}
+        enableColumnFilterModes={false}
+        enableStickyHeader={true}
+        positionToolbarAlertBanner="top"
+        enableTopToolbar={false}
+        initialState={{ showColumnFilters: false }}
+        columns={columns}
+        data={data}
+    />;
+};
+
+export default Example;
