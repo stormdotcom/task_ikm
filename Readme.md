@@ -1,10 +1,10 @@
-### Task
+## Task
 
-## Components
+### Components
 - Table
 - NavBar
 - Footer
-## Libraries used
+### Libraries used
 -  "@material-ui/core": "^4.12.4",
 -  "@mui/icons-material": "^5.11.9",
 -  "material-react-table": "^1.8.1",
